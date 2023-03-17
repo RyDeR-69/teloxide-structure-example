@@ -3,7 +3,6 @@ mod error;
 mod prelude;
 
 use crate::prelude::*;
-use teloxide::dispatching::dialogue::InMemStorage;
 use teloxide::prelude::Dispatcher;
 use teloxide::{dptree, Bot};
 
@@ -27,7 +26,7 @@ async fn main() -> Result<()> {
         // disable logging for unhandled updates
         log::warn!("Someone tried to use admin commands");
     })
-    .dependencies(dptree::deps![InMemStorage::<core::GlobalState>::new()])
+    .dependencies(dptree::deps![GlobalStorage::new()])
     .build()
     .dispatch()
     .await;
