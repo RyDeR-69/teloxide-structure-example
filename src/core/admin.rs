@@ -1,16 +1,22 @@
-use crate::core::{AdminCommand, GlobalState};
-use crate::prelude::*;
 use teloxide::dispatching::{HandlerExt, UpdateFilterExt};
 use teloxide::dptree::case;
 use teloxide::prelude::{Message, Requester};
 use teloxide::types::Update;
 use teloxide::{dptree, Bot};
 
+use crate::core::{AdminCommand, GlobalState};
+use crate::prelude::*;
+
 pub fn schema() -> UpdateHandler {
+    let admin_id = std::env::var("ADMIN_ID")
+        .expect("ADMIN_ID env var is not set")
+        .parse::<u64>()
+        .unwrap();
+
     dptree::entry().branch(
-        dptree::filter(|upd: Update| {
+        dptree::filter(move |upd: Update| {
             upd.from()
-                .map(|user| user.id.0 == 971271110) // replace with your id
+                .map(|user| user.id.0 == admin_id)
                 .unwrap_or(false)
         })
         .branch(
