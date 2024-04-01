@@ -6,8 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-log = "0.4.17"
-thiserror = "1.0.39"
-pretty_env_logger = "0.4.0"
-teloxide = { version = "0.12.2", features = ["full"] }
-tokio = { version = "1.26.0", features = ["full"] }
+log = "0.4.21"
+thiserror = "1.0.58"
+pretty_env_logger = "0.5.0"
+teloxide = { git = "https://github.com/teloxide/teloxide.git", rev = "fb2865b", features = ["full"] }
+tokio = { version = "1.37.0", features = ["full"] }

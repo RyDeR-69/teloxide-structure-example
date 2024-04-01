@@ -9,8 +9,8 @@ use teloxide::{dptree, Bot};
 pub fn schema() -> UpdateHandler {
     dptree::entry().branch(
         dptree::filter(|upd: Update| {
-            upd.user()
-                .map(|user| user.id.0 == 69) // replace with your id
+            upd.from()
+                .map(|user| user.id.0 == 971271110) // replace with your id
                 .unwrap_or(false)
         })
         .branch(
